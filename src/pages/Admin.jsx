@@ -28,6 +28,7 @@ function Admin() {
   });
 
   const { token } = useSelector((state) => state.auth);
+  console.log(" token in frontend",token);
 
 
 
@@ -137,12 +138,18 @@ function Admin() {
 
   const fetchvideos = async()=>{
     try {
-      const response = await axios.get("https://opencoursebackend.onrender.com/user/getvideos",{
+      const response = await axios.get("https://opencoursebackend.onrender.com/user/getvideos",
+        { withCredentials: true },{
         headers: {
           Authorization: `Bearer ${token}`,
         },
+       
       });
+
+
       const Videos = response.data.videos;
+      
+
 
     //  Fetch user videos and set them
     const videoList = Videos.map(video => ({
