@@ -56,37 +56,37 @@ function App() {
 			id: 1,
 			name: "Aryan Meena",
 			// designation: "CEO",
-			image: "../public/h1.jpeg",
+			image: "/h1.jpeg",
 		},
 		{
 			id: 2,
 			name: "Vikas Pal",
 			// designation: "CTO",
-			image: "../public/h2.jpeg",
+			image: "/h2.jpeg",
 		},
 		{
 			id: 3,
 			name: "Anurag Sing",
 			// designation: "CMO",
-			image: "../public/h3.jpeg",
+			image: "/h3.jpeg",
 		},
 		{
 			id: 4,
 			name: "Manroop Sing",
 			// designation: "DESIGNING HEAD",
-			image: "../public/h4.jpeg",
+			image: "/h4.jpeg",
 		},
 		{
 			id: 5,
 			name: "Ayush Nagar",
 			// designation: "Black V Man",
-			image: "../public/h5.jpeg",
+			image: "/h5.jpeg",
 		},
 		{
 			id: 6,
 			name: "Dora",
 			designation: "The Explorer",
-			image: "../public/h6.jpeg",
+			image: "/h6.jpeg",
 		},
 	];
 
@@ -172,7 +172,7 @@ function App() {
 						</p>
 						<div className="relative mt-6">
 							<img
-								src="../src/assets/laptop-3.jpg"
+								src="src/assets/laptop-3.jpg"
 								alt="Laptop"
 								className="w-full max-w-lg mx-auto object-cover rounded-lg"
 							/>
@@ -200,7 +200,7 @@ function App() {
 					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
 						<img
 							className="rounded-lg hover:scale-105 duration-300"
-							src="../public/contribute_im1.jpeg"
+							src="/contribute_im1.jpeg"
 							alt="Web Development"
 						/>
 						<h3 className="text-xl font-bold text-white p-1">
@@ -227,7 +227,7 @@ function App() {
 					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
 						<img
 							className="rounded-lg hover:scale-105 duration-300"
-							src="../public/contribute_img2.jpeg"
+							src="/contribute_img2.jpeg"
 							alt="AI/ML"
 						/>
 						<h3 className="text-xl font-bold text-white p-1">
@@ -254,7 +254,7 @@ function App() {
 					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
 						<img
 							className="rounded-lg hover:scale-105 duration-300"
-							src="../public/contribution_img3.jpeg"
+							src="/contribution_img3.jpeg"
 							alt="Android Development"
 						/>
 						<h3 className="text-xl font-bold text-white p-1">
@@ -281,7 +281,7 @@ function App() {
 					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
 						<img
 							className="rounded-lg hover:scale-105 duration-300"
-							src="../src/assets/blockchain.webp"
+							src="/src/assets/blockchain.webp"
 							alt="Web Development"
 						/>
 						<h3 className="text-xl font-bold text-white p-1">
@@ -308,7 +308,7 @@ function App() {
 					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
 						<img
 							className="rounded-lg hover:scale-105 duration-300"
-							src="../public/contribute_im1.jpeg"
+							src="/contribute_im1.jpeg"
 							alt="Data Science"
 						/>
 						<h3 className="text-xl font-bold text-white p-1">
