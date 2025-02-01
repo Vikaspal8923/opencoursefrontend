@@ -150,7 +150,7 @@ function App() {
 					<div className="flex justify-center items-center mt-10 md:mt-0">
 						<img
 							className="w-2/3 md:w-auto mb-14"
-							src="../public/hero_section_img.png"
+							src="/hero_section_img.png"
 							alt="Hero Section"
 						/>
 					</div>
