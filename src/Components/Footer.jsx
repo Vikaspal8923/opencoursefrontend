@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-8">
+    <footer className="bg-gray-950 text-gray-300 py-8">
       <div className="container mx-auto px-8 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Section */}
         <div>
@@ -21,27 +21,17 @@ function Footer() {
             <h3 className="text-lg font-semibold text-white mb-3 ">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-indigo-400 transition-colors">
+                <a href="/" className="hover:text-indigo-400 transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-indigo-400 transition-colors">
+                <a href="/userpanel" className="hover:text-indigo-400 transition-colors">
                   Courses
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-indigo-400 transition-colors">
-                  DevChallenge
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-indigo-400 transition-colors">
-                  Labs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-indigo-400 transition-colors">
+                <a href="/about" className="hover:text-indigo-400 transition-colors">
                   Contact
                 </a>
               </li>

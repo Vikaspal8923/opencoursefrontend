@@ -6,13 +6,15 @@ import SignUp from './Authentication/SignUp.jsx';
 import './index.css'
 import Login from './Authentication/Login.jsx';
 import Admin from './pages/Admin.jsx';
+
 import About from './pages/About/About.jsx';
 import ComingSoon from './pages/Community/ComingSoon.jsx';
 
+
 import UserPanel from './pages/UserPanel.jsx';
 import Header from './Components/Header.jsx';
-import Interview from './pages/Interview.jsx';
-import InterviewPrep from './pages/InterviewPrep.jsx';
+import Interview from './pages/Interviewsection/Interview.jsx';
+import InterviewPrep from './pages/Interviewsection/InterviewPrep.jsx';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -22,8 +24,7 @@ import { configureStore} from "@reduxjs/toolkit"
 
 import { Toaster } from "react-hot-toast";
 import rootreducer from './reducer/index.js';
-import TopicPage from './pages/nontechadminparts/NonTechBranch.jsx';
-import SubTopicPage from './pages/nontechadminparts/NonTechSubTopic.jsx';
+
 import GiveContest from './pages/Interviewsection/GiveContest.jsx';
 import DailyGoals from './pages/Interviewsection/DailyGoals.jsx';
 import StartPrep from './pages/Interviewsection/Startprep.jsx';
@@ -33,6 +34,13 @@ import CheckAnswer from './pages/Interviewsection/CheckAnswer.jsx';
 
 import Dummynontech from './pages/nontechadminparts/Dummynontech.jsx';
 import Addsubtopicnontech from './pages/nontechadminparts/Addsubtopic.jsx';
+
+
+import Seencourse from './pages/nontechshowcourseparts/Seencourse.jsx';
+import ExplorenontechCourse from './pages/nontechshowcourseparts/Explorenoncourse.jsx';
+
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
   
    
@@ -44,7 +52,8 @@ import Addsubtopicnontech from './pages/nontechadminparts/Addsubtopic.jsx';
 
 createRoot(document.getElementById('root')).render(
  
-  <StrictMode>
+  
+ 
 
     <Provider store = { store}>
 
@@ -64,16 +73,19 @@ createRoot(document.getElementById('root')).render(
   
         <Route path="/admin" element={<Admin />} />
 
+
+        
+       
+
         <Route path='/about' element={<About />}/>
         <Route path='/community' element={<ComingSoon/>} />
 
       
-        <Route path="/nontech/:fieldname" element={<TopicPage/>} /> 
-        <Route path="/nontech/:fieldname/:topicname" element={  <SubTopicPage/> } />
+      
 
         <Route path="/userpanel" element={<UserPanel />} />
 
-        <Route path="/interview" element={<Interview />} />
+        <Route path="/contributeinterview" element={<Interview />} />
 
         <Route path="/interviewprep" element={<InterviewPrep />} />
 
@@ -82,20 +94,25 @@ createRoot(document.getElementById('root')).render(
         <Route path="/interviewprep/DailyGoals" element={<DailyGoals />} />
         <Route path='/practiceinterviewanswer' element={ <CheckAnswer/>  }  ></Route>
 
-        
+
         <Route path="/dummynontechcourse" element={<Dummynontech/>} />  
         <Route path="/addnontechsub" element={  <Addsubtopicnontech/>} />
+
+        <Route  path = "/seenontechcourse" element = {<Seencourse/>}   />
+        <Route  path='/explorenontech' element = {<ExplorenontechCourse/>} />
 
 
 
 
       </Routes>
+      
 
     </Router>
 
     <ToastContainer />
     </Provider>
-    </StrictMode>
+   
+    
 
   
 )
