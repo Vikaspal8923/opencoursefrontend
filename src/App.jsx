@@ -172,7 +172,7 @@ function App() {
 						</p>
 						<div className="relative mt-6">
 							<img
-								src="src/assets/laptop-3.jpg"
+								src="/laptop-3.jpg"
 								alt="Laptop"
 								className="w-full max-w-lg mx-auto object-cover rounded-lg"
 							/>
@@ -281,7 +281,7 @@ function App() {
 					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
 						<img
 							className="rounded-lg hover:scale-105 duration-300"
-							src="/src/assets/blockchain.webp"
+							src="/blockchain.webp"
 							alt="Web Development"
 						/>
 						<h3 className="text-xl font-bold text-white p-1">
