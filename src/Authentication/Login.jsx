@@ -41,7 +41,9 @@ const Login = () => {
 				dispatch(
 					setSignupData(response.data.data.user)
 				);
+				
 				dispatch(setToken(Cookies.get("accessToken")));
+
 				// Store signup data in local storage
 				localStorage.setItem(
 					"signupData",

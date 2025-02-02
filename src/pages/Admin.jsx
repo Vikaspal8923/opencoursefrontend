@@ -107,7 +107,10 @@ function Admin() {
 
   const fetchFields = async () => {
     try {
-      const response = await axios.get("https://opencoursebackend.onrender.com/user/getfields",{
+      const response = await axios.get("https://opencoursebackend.onrender.com/user/getfields",
+        {
+          withCredentials: true, 
+        },{
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -212,6 +215,7 @@ function Admin() {
           {
             name: newField, 
           },
+          { withCredentials: true },
           {
             headers: {
               Authorization: `Bearer ${token}`, // Authorization token in headers
@@ -300,7 +304,7 @@ function Admin() {
          //console.log("Field ID is:", selectedField._id);
        
       try {
-        const response = await axios.post(`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`, {
+        const response = await axios.post(`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`,{ withCredentials: true }, {
           subtopicName: newTopic.trim()
         });
   
@@ -409,7 +413,7 @@ function Admin() {
       try {
         const response = await axios.post(
           `https://opencoursebackend.onrender.com/user/subtopics/${selectedTopic.id}/videos`,
-           // Use selectedTopic.id here
+          { withCredentials: true },
           { title, url, description },
           {
             headers: {

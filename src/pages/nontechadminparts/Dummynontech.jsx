@@ -85,7 +85,8 @@ const Dummynontech = () => {
   
     try {
       // Make the API request to the backend
-      const response = await axios.post('https://opencoursebackend.onrender.com/nontech/addnontechVideo', payload, {
+      const response = await axios.post('https://opencoursebackend.onrender.com/nontech/addnontechVideo',
+      { withCredentials: true }, payload, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in Authorization header
         },

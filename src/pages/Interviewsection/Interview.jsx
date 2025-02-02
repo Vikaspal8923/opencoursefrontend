@@ -35,6 +35,7 @@ const Interview = () => {
 			const dataToSend = { ...formData, answers: editorContent };
 			await axios.post(
 				"https://opencoursebackend.onrender.com/Interview/addQuestion",
+				{ withCredentials: true },
 				dataToSend
 			);
 
