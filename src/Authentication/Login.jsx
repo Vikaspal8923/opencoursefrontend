@@ -23,7 +23,7 @@ const Login = () => {
 	};
 
 	const handleSubmit = async (e) => {
-		
+
 		e.preventDefault();
 		
 		try {
@@ -35,8 +35,8 @@ const Login = () => {
 
 			if (response) {
 				console.log(
-					"response is:",
-					response.data.data.user
+					"cookies is:",
+					Cookies.get("accessToken")
 				);
 				dispatch(
 					setSignupData(response.data.data.user)
