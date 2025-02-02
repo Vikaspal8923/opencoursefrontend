@@ -14,6 +14,7 @@ function Header() {
   const { token: accesstoken } = useSelector((state) => state.auth);
 
   
+  
   const verifyAccessToken = (token) => {
     try {
       // Decode the token
@@ -186,7 +187,7 @@ function Header() {
 
         {/* Dropdown Menu */}
         {menuOpen && (
-          <div className="absolute top-16 right-5 mt-2 w-48 bg-bg-dark bg-opacity-[.96] rounded-lg shadow-lg z-50">
+          <div className="absolute top-16 right-5 mt-12 w-48 bg-bg-dark bg-opacity-[.96] rounded-lg shadow-lg z-50">
             <Link
               to="/#"
               className="block px-4 py-2 text-gray-300 hover:text-white hover:underline transition-colors"
@@ -206,6 +207,7 @@ function Header() {
             >
               About Us
             </Link>
+
             <Link
               to="/community"
               className="block px-4 py-2 text-gray-300 hover:text-white hover:underline transition-colors"
@@ -213,10 +215,11 @@ function Header() {
               Community
             </Link>
 
+
             {/* Conditionally Render Logout Button */}
             {!isexpired && accesstoken && (
               <Link
-                to="/#"
+                to="/"
                 onClick={handleLogout}
                 className="block px-4 py-2 bg-red-700 text-white rounded mb-2 hover:bg-red-800"
               >

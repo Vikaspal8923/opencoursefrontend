@@ -1,72 +1,38 @@
-
 import { CgSandClock } from "react-icons/cg";
-import { Link } from "react-router-dom";
 import { FaEye, FaPencilAlt } from 'react-icons/fa';
 import { useState } from "react";
 import parse from 'html-react-parser';
 
+const QuestionTemplate = ({ exp }) => {
+    const [showAnswer, setShowAnswer] = useState(true);
 
+    return (
+        <div className="w-full md:w-[90%] bg-black p-4 mb-4 rounded-lg shadow-lg flex flex-col md:flex-row">
+            <div className="w-full ml-0 md:ml-5 p-2 md:pl-5 flex flex-col mt-3 md:mt-5">
+                {/* QUESTION */}
+                <p className="text-white text-lg md:text-xl font-bold flex flex-col md:flex-row">
+                    <strong className="text-lg md:text-xl text-blue-600">Question:</strong>
+                    <span className="mt-1 md:mt-0 md:ml-2">{exp.questions}</span>
+                </p>
+                <hr className="border-gray-600 my-2" />
 
-const QuestionTemplate = ({exp}) => {
+                {/* ANSWER */}
+                {showAnswer && (
+                    <div className="text-white text-base md:text-lg mt-2">
+                        {parse(exp.answers)}
+                    </div>
+                )}
 
- 
-
-  const[showanswer,setshowanswer] = useState(true);
-
-      return(
-
-
-        <div  className=" w-[90%] bg-black  flex flex-row  p-2 mb-4 rounded-lg shadow">
-        
-                    
-                    <div className=" w-[100%]  ml-5 pl-5 flex flex-col   mt-5" >
-
-                            {/* QUESTION AND ANSWER P TAG */}
-                        <p className="  flex flex-row  justify-start items-center text-white   text-xl  font-bold "> <strong className=" text-xl text-blue-600 font-bold"> Question: </strong> {exp.questions}</p>
-                         <hr />
-                         { showanswer && 
-                           
-                           <div className="flex flex-row justify-start items-center text-white text-lg">
-                           {parse(exp.answers)} 
-
-                         </div>
-                              
-                         }
-
-
-
-    
-                          {/* ASKED TO COMPANY NAME ,SKILL TAGES */}
-
-                          <div className="flex flex-row justify-start items-center space-x-2 mt-3 ">
-                           
-
-
-                             {/* Company */}
-                            <span className="text-xs font-medium text-white">company: #{exp.companyName}</span>
-
-                             {/* Skill */}
-                            <span className="text-xs font-medium text-blue-500">skill: #{exp.skill}</span>
-
-                             {/* question type */}
-                            <span className="text-xs font-medium text-white">Question Type: #{exp.questiontype}</span>
-
-                             {/* Job role */}
-                            <span className="text-xs font-medium text-blue-500">Job role: #{exp.role}</span>
-
-                        
-                          </div>
-
-
-
-                    </div >
-
-
-                     
+                {/* METADATA */}
+                <div className="flex flex-wrap gap-2 mt-3">
+                    <span className="text-xs md:text-sm font-medium text-white bg-gray-800 px-2 py-1 rounded">Company: #{exp.companyName}</span>
+                    <span className="text-xs md:text-sm font-medium text-blue-500 bg-gray-800 px-2 py-1 rounded">Skill: #{exp.skill}</span>
+                    <span className="text-xs md:text-sm font-medium text-white bg-gray-800 px-2 py-1 rounded">Type: #{exp.questiontype}</span>
+                    <span className="text-xs md:text-sm font-medium text-blue-500 bg-gray-800 px-2 py-1 rounded">Role: #{exp.role}</span>
+                </div>
+            </div>
         </div>
-
-
-      )
+    );
 };
 
 export default QuestionTemplate;

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, json } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken, setSignupData } from "../reducer/slice/authSlice";
 import Cookies from "js-cookie";
@@ -34,21 +34,23 @@ const Login = () => {
 			);
 
 			if (response) {
-				console.log(
-					"cookies is:",
-					Cookies.get("accessToken")
-				);
+				
 				dispatch(
-					setSignupData(response.data.data.user)
+					setSignupData(response.data.data.user),
+					
+
 				);
 				
-				dispatch(setToken(Cookies.get("accessToken")));
+				dispatch(setToken(response.data.data.token));
 
 				// Store signup data in local storage
 				localStorage.setItem(
 					"signupData",
 					JSON.stringify(response.data.data.user)
 				);
+				localStorage.setItem("token",json.stringify(response.data.data.token));
+
+				
 				navigate("/");
 				toast.success("Loggin Successful", {
 					position: "top-right",
