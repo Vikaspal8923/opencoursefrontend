@@ -7,6 +7,8 @@ import { setToken, setSignupData } from "../reducer/slice/authSlice";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Loader } from 'rsuite';
+
 
 
 const Login = () => {
@@ -18,6 +20,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
@@ -27,50 +30,69 @@ const Login = () => {
 		e.preventDefault();
 		
 		try {
+			// Show the loading toast when login starts
+			const toastId = toast.loading("Logging in...", {
+				position: "top-right",
+				autoClose: false, 
+				hideProgressBar: true,
+				closeOnClick: false,
+				pauseOnHover: true,
+				draggable: true,
+				theme: "light",
+			});
+		
+			// Send the login request
 			const response = await axios.post(
 				"https://opencoursebackend.onrender.com/auth/login",
-				formData,{ withCredentials: true }
-				
+				formData,
+				{ withCredentials: true }
 			);
-
+		
 			if (response) {
-				
-				dispatch(
-					setSignupData(response.data.data.user),
-					
-
-				);
-				
+				// Dispatch data to store
+				dispatch(setSignupData(response.data.data.user));
 				dispatch(setToken(response.data.data.token));
-
-				// Store signup data in local storage
-				localStorage.setItem(
-					"signupData",
-					JSON.stringify(response.data.data.user)
-				);
-				
-				localStorage.setItem("token",JSON.stringify(response.data.data.token));
-
-				
+		
+				// Store signup data and token in local storage
+				localStorage.setItem("signupData", JSON.stringify(response.data.data.user));
+				localStorage.setItem("token", JSON.stringify(response.data.data.token));
+		
+				// Navigate to the home page
 				navigate("/");
-				toast.success("Loggin Successful", {
-					position: "top-right",
+		
+				// Dismiss the loading toast and show success
+				toast.update(toastId, {
+					render: "Login Successful!",
+					type: "success",
 					autoClose: 5000,
-					success: true,
-					hideProgressBar: false,
 					closeOnClick: true,
 					pauseOnHover: true,
 					draggable: true,
-					theme: "light",
 				});
 			} else {
-				alert("Login failed");
+				// Handle the failed login case
+				toast.update(toastId, {
+					render: "Login failed",
+					type: "error",
+					autoClose: 5000,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+				});
 			}
 		} catch (err) {
-			console.log("error is ", err);
-			alert("Error logging in");
+			// Log error and show failure toast
+			console.log("Error is ", err);
+			toast.update(toastId, {
+				render: "Error logging in",
+				type: "error",
+				autoClose: 5000,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+			});
 		}
-	};
+	}		
 
 	return (
 		<div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-200 to-indigo-200">
