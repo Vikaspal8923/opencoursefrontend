@@ -48,7 +48,8 @@ const Login = () => {
 					"signupData",
 					JSON.stringify(response.data.data.user)
 				);
-				localStorage.setItem("token",json.stringify(response.data.data.token));
+				
+				localStorage.setItem("token",JSON.stringify(response.data.data.token));
 
 				
 				navigate("/");
