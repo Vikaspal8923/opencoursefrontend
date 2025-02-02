@@ -304,8 +304,15 @@ function Admin() {
          //console.log("Field ID is:", selectedField._id);
        
       try {
-        const response = await axios.post(`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`,{ withCredentials: true }, {
-          subtopicName: newTopic.trim()
+        const response = await axios.post(`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`,
+          {
+            withCredentials: true, // Include credentials (cookies)
+            headers: {
+              Authorization: `Bearer ${token}`, // Authorization token in headers
+            },
+          }, {
+          subtopicName: newTopic.trim(),
+          
         });
   
         const data = response.data;
@@ -413,12 +420,14 @@ function Admin() {
       try {
         const response = await axios.post(
           `https://opencoursebackend.onrender.com/user/subtopics/${selectedTopic.id}/videos`,
-          { withCredentials: true },
+          
           { title, url, description },
+
           {
+            withCredentials: true, // Include credentials (cookies)
             headers: {
-              Authorization: `Bearer ${token}`,
-            }, 
+              Authorization: `Bearer ${token}`, // Authorization token in headers
+            },
           }
         );
 
@@ -442,6 +451,7 @@ function Admin() {
           // Reset selectedTopic only after success
           setSelectedTopic(null);
         }
+
       } catch (error) {
         if (error.response?.status === 403) {
           alert("This subtopic already has videos from 5 different users.");
