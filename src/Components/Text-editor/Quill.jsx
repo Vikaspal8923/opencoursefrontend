@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+
 const toolbarOptions = [
   [{ size: ["small", false, "large", "huge"] }]
   [{ list: "ordered" }, { list: "bullet" }]
 ];
 
+
 const Editor = ({ setContent }) => {
   const [content, setLocalContent] = useState("");
 
   const handleChange = (value) => {
+
     setLocalContent(value);
 
     // Pass the raw HTML content to the parent
@@ -34,6 +37,7 @@ const Editor = ({ setContent }) => {
     </div>
   );
 };
+
 
 export default Editor;
 

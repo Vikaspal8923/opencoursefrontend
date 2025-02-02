@@ -43,6 +43,7 @@ const Addsubtopicnontech = () => {
       setQAPairs(newQAPairs); // Update state
     };
   
+
     // Handle changes in video details
     const handleVideoChange = (index, field, value) => {
       const newVideos = [...videos];
@@ -78,13 +79,18 @@ const Addsubtopicnontech = () => {
       try {
         // Send API request to add subtopic contributions
         const response = await axios.post('https://opencoursebackend.onrender.com/nontech/addNonTechSubtopic',
-          { withCredentials: true }, payload, {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include authentication token
-          },
-        });
+           payload, 
+            {
+            withCredentials: true,
+
+            headers: {
+              Authorization: `Bearer ${token}`, 
+            },
+          });
+
+
   
-        // Reset form on successful submission
+        
         if (response.data.success) {
              
                     // Show success toast
@@ -95,9 +101,9 @@ const Addsubtopicnontech = () => {
                       autoClose: 5000,
                     });
             setSelectedSubtopic('');
-          setSelectedSubtopicid('');
-          setVideos([{ title: '', url: '' }]);
-          setQAPairs([{ question: '', answer: '' }]);
+            setSelectedSubtopicid('');
+            setVideos([{ title: '', url: '' }]);
+            setQAPairs([{ question: '', answer: '' }]);
         }
       } catch (error) {
         console.error('Error in submitting form:', error);

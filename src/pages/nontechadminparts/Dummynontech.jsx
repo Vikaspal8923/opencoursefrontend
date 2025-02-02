@@ -85,24 +85,29 @@ const Dummynontech = () => {
   
     try {
       // Make the API request to the backend
-      const response = await axios.post('https://opencoursebackend.onrender.com/nontech/addnontechVideo',
-      { withCredentials: true }, payload, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Include the token in Authorization header
-        },
-      });
-  
+      const response = await axios.post(
+        'https://opencoursebackend.onrender.com/nontech/addnontechVideo',
+        payload, 
+        {
+          withCredentials: true, 
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        }
+      );
+
       if (response.data.success) {
-        // Show success toast
         toast.update(loadingToast, {
           render: 'Intialized a course successfully!',
           type: 'success',
           isLoading: false,
           autoClose: 5000,
         });
+
   
         setSuccessMessage(response.data.message); // Show success message
   
+        
         // Optionally reset form fields
         setNontechFieldname('');
         setNontechBranchname('');

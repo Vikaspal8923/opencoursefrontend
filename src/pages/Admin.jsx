@@ -301,12 +301,13 @@ function Admin() {
 
 
           // Only log selectedField._id
-         //console.log("Field ID is:", selectedField._id);
+         console.log("Field ID is:", selectedField._id);
        
+         
       try {
         const response = await axios.post(`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`,
           {
-            withCredentials: true, // Include credentials (cookies)
+            withCredentials: true, 
             headers: {
               Authorization: `Bearer ${token}`, // Authorization token in headers
             },
