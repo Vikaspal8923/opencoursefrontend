@@ -303,18 +303,17 @@ function Admin() {
           // Only log selectedField._id
          console.log("Field ID is:", selectedField._id);
        
-         
+
       try {
         const response = await axios.post(`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`,
-          {
+           {subtopicName: newTopic.trim()},
+           {
             withCredentials: true, 
             headers: {
               Authorization: `Bearer ${token}`, // Authorization token in headers
             },
-          }, {
-          subtopicName: newTopic.trim(),
-          
-        });
+          }
+      );
   
         const data = response.data;
         toast.success('Tpoic added successfully', {
@@ -423,9 +422,8 @@ function Admin() {
           `https://opencoursebackend.onrender.com/user/subtopics/${selectedTopic.id}/videos`,
           
           { title, url, description },
-
           {
-            withCredentials: true, // Include credentials (cookies)
+            withCredentials: true,
             headers: {
               Authorization: `Bearer ${token}`, // Authorization token in headers
             },
