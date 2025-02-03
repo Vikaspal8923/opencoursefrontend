@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function Admin() {
+  
+
   const [fields, setFields] = useState([]);
 
 
@@ -135,7 +137,6 @@ function Admin() {
   };
 
 
-console.log(" token in admin page",token)
 
 
 
