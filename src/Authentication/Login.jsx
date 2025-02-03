@@ -29,9 +29,10 @@ const Login = () => {
 
 		e.preventDefault();
 		
+		
 		try {
 			// Show the loading toast when login starts
-			const toastId = toast.loading("Logging in...", {
+			 toast.loading("Logging in...", {
 				position: "top-right",
 				autoClose: false, 
 				hideProgressBar: true,
@@ -61,7 +62,7 @@ const Login = () => {
 				navigate("/");
 		
 				// Dismiss the loading toast and show success
-				toast.update(toastId, {
+				toast.success({
 					render: "Login Successful!",
 					type: "success",
 					autoClose: 5000,
@@ -71,7 +72,7 @@ const Login = () => {
 				});
 			} else {
 				// Handle the failed login case
-				toast.update(toastId, {
+				toast.error( {
 					render: "Login failed",
 					type: "error",
 					autoClose: 5000,
@@ -83,7 +84,7 @@ const Login = () => {
 		} catch (err) {
 			// Log error and show failure toast
 			console.log("Error is ", err);
-			toast.update(toastId, {
+			toast.error({
 				render: "Error logging in",
 				type: "error",
 				autoClose: 5000,

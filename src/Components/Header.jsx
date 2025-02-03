@@ -11,7 +11,7 @@ function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isexpired, setisexpired] = useState(true);
-  const { token: accesstoken } = useSelector((state) => state.auth);
+  const { token: token } = useSelector((state) => state.auth);
 
   
   
@@ -54,9 +54,9 @@ function Header() {
 
   // useEffect to verify the token when the component mounts
   useEffect(() => {
-    if (accesstoken) {
+    if (token) {
       // Verify token on component load
-      verifyAccessToken(accesstoken);
+      verifyAccessToken(token);
     } else {
       const tokenFromCookie = Cookies.get('accessToken');
       if (tokenFromCookie) {
@@ -66,7 +66,7 @@ function Header() {
         setisexpired(true);
       }
     }
-  }, [accesstoken]);
+  }, [token]);
 
 
 

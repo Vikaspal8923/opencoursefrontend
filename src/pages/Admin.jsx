@@ -425,7 +425,7 @@ function Admin() {
           {
             withCredentials: true,
             headers: {
-              Authorization: `Bearer ${token}`, // Authorization token in headers
+              Authorization: `Bearer ${token}`, 
             },
           }
         );
