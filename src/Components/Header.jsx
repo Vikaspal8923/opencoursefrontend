@@ -57,15 +57,11 @@ function Header() {
     if (token) {
       // Verify token on component load
       verifyAccessToken(token);
-    } else {
-      const tokenFromCookie = Cookies.get('accessToken');
-      if (tokenFromCookie) {
-        // Verify token from cookies if not in Redux state
-        verifyAccessToken(tokenFromCookie);
-      } else {
+    }  
+       else {
         setisexpired(true);
       }
-    }
+    
   }, [token]);
 
 
@@ -147,7 +143,7 @@ function Header() {
         </Link>
 
         {/* Conditionally Render Logout Button */}
-        {!isexpired && accesstoken && (
+        {!isexpired && token && (
           <Link
             to="/#"
             onClick={handleLogout}
@@ -217,7 +213,7 @@ function Header() {
 
 
             {/* Conditionally Render Logout Button */}
-            {!isexpired && accesstoken && (
+            {!isexpired && token && (
               <Link
                 to="/"
                 onClick={handleLogout}
