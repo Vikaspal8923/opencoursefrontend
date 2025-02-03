@@ -34,11 +34,12 @@ const authSlice  = createSlice({
                  },
                  logout(state) {
                     state.token = null; 
-                    Cookies.remove('accessToken'); // Optional: Remove the token cookie on logout
-                    Cookies.remove('refreshToken'); // Clear refresh token if applicable
+                    // Cookies.remove('accessToken'); // Optional: Remove the token cookie on logout
+                    // Cookies.remove('refreshToken'); // Clear refresh token if applicable
 
                     localStorage.removeItem('signupData')
-                    localStorage.removeItem('token')
+                    localStorage.removeItem('token');
+                    console.log("removed token is : ",localStorage.getItem('token'));
 
 
                   },
