@@ -135,7 +135,7 @@ function Admin() {
   };
 
 
-
+console.log(" token in admin page",token)
 
 
 
@@ -185,8 +185,6 @@ function Admin() {
     setSelectedField(field);
      
   };
-
-
 
 
 
