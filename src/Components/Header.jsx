@@ -13,7 +13,8 @@ function Header() {
   const [isexpired, setisexpired] = useState(true);
   const { token: token } = useSelector((state) => state.auth);
 
-  
+  console.log("token is hai",token);
+  console.log("token local ka ",localStorage.getItem('token'));
   
   const verifyAccessToken = (token) => {
     try {
@@ -31,6 +32,7 @@ function Header() {
 
       } else {
         setisexpired(false);
+
       }
     } catch (error) {
 

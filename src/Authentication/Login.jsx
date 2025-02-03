@@ -12,6 +12,8 @@ import { Loader } from 'rsuite';
 
 
 const Login = () => {
+
+
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -46,17 +48,20 @@ const Login = () => {
 			const response = await axios.post(
 				"https://opencoursebackend.onrender.com/auth/login",
 				formData,
-				{ withCredentials: true }
+				
 			);
 		
 			if (response) {
 				// Dispatch data to store
+				   console.log("login response",response.data);
 				dispatch(setSignupData(response.data.data.user));
 				dispatch(setToken(response.data.data.token));
+				
 		
 				// Store signup data and token in local storage
 				localStorage.setItem("signupData", JSON.stringify(response.data.data.user));
 				localStorage.setItem("token", JSON.stringify(response.data.data.token));
+			
 		
 				// Navigate to the home page
 				navigate("/");
@@ -70,7 +75,8 @@ const Login = () => {
 					pauseOnHover: true,
 					draggable: true,
 				});
-			} else {
+			} 
+			else {
 				// Handle the failed login case
 				toast.error( {
 					render: "Login failed",

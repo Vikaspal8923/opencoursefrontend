@@ -6,7 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function Admin() {
-  
+  console.log("token is hai");
+  console.log("token local ka ",localStorage.getItem('token'));
+  const { token: token } = useSelector((state) => state.auth);
+  console.log(" token in frontend",token);
 
   const [fields, setFields] = useState([]);
 
@@ -29,8 +32,7 @@ function Admin() {
     description: ""
   });
 
-  const { token } = useSelector((state) => state.auth);
-  console.log(" token in frontend",token);
+ 
 
 
 
