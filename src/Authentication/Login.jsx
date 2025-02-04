@@ -46,7 +46,7 @@ const Login = () => {
 		
 			// Send the login request
 			console.log("befor fetch");
-			
+
 			const response = await axios.post(
 				"https://opencoursebackend.onrender.com/auth/login",
 				formData,
@@ -54,8 +54,9 @@ const Login = () => {
 			);
 			console.log("after fetch");
 			if (response) {
+
 				// Dispatch data to store
-				   console.log("login response",response.data);
+				console.log("login response",response.data);
 				dispatch(setSignupData(response.data.data.user));
 				dispatch(setToken(response.data.data.token));
 				
@@ -89,7 +90,9 @@ const Login = () => {
 					draggable: true,
 				});
 			}
-		} catch (err) {
+		} 
+		
+		catch (err) {
 			// Log error and show failure toast
 			console.log("Error is ", err);
 			toast.error({

@@ -107,17 +107,15 @@ function Admin() {
 
 
 
-
+console.log(" token in admin page id",token);
 
   const fetchFields = async () => {
     try {
       const response = await axios.get("https://opencoursebackend.onrender.com/user/getfields",
         {
-          withCredentials: true, 
-        },{
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       });
       const data = response.data;
 
