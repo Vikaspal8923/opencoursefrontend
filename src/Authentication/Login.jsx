@@ -4,9 +4,9 @@ import axios from "axios";
 import { useNavigate, Link, json } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken, setSignupData } from "../reducer/slice/authSlice";
-import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { Loader } from 'rsuite';
 
 
@@ -45,12 +45,14 @@ const Login = () => {
 			});
 		
 			// Send the login request
+			console.log("befor fetch");
+			
 			const response = await axios.post(
 				"https://opencoursebackend.onrender.com/auth/login",
 				formData,
 				
 			);
-		
+			console.log("after fetch");
 			if (response) {
 				// Dispatch data to store
 				   console.log("login response",response.data);
