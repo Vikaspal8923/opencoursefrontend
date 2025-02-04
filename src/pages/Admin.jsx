@@ -143,7 +143,7 @@ console.log(" token in admin page id",token);
   const fetchvideos = async()=>{
     try {
       const response = await axios.get("https://opencoursebackend.onrender.com/user/getvideos",
-        { withCredentials: true },{
+        {
         headers: {
           Authorization: `Bearer ${token}`,
         },
