@@ -81,13 +81,13 @@ const SignUp = () => {
 		<div className="bg-bg-dark">
 			<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 				<div className="w-full rounded-lg shadow dark:border sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
-					<div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+					<div className="p-6 space-y-4 md:space-y-3 sm:p-8">
 						<h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
 							Create an account
 						</h1>
 						<form
 							onSubmit={handleSubmit}
-							className="space-y-4 md:space-y-6">
+							className="space-y-4 md:space-y-3">
 							<div>
 								<label
 									htmlFor="username"
@@ -108,6 +108,7 @@ const SignUp = () => {
 									required
 								/>
 							</div>
+
 
 							<div>
 								<label
@@ -150,6 +151,7 @@ const SignUp = () => {
 									required
 								/>
 							</div>
+
 
 							<div>
 								<label
@@ -223,7 +225,7 @@ const SignUp = () => {
 								</button>
 							</div>
 
-							<p className="mt-4 text-center text-gray-600">
+							<p className="text-center text-gray-600">
 								Already have an
 								account?{" "}
 								<Link

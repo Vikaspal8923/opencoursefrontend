@@ -74,39 +74,39 @@ function Header() {
 				}`}>
 				<Link
 					to="/Admin"
-					className="block px-4 py-2 text-gray-300 hover:text-white">
+					className="block px-4 py-2 font-semibold text-gray-300 hover:text-white">
 					Contribute
 				</Link>
 				<Link
 					to="/Userpanel"
-					className="block px-4 py-2 text-gray-300 hover:text-white">
+					className="block px-4 py-2 font-semibold text-gray-300 hover:text-white">
 					Courses
 				</Link>
 				<Link
 					to="/interviewprep/Startprep"
-					className="block px-4 py-2 text-gray-300 hover:text-white">
+					className="block px-4 py-2 font-semibold text-gray-300 hover:text-white">
 					Interview
 				</Link>
 				<Link
 					to="/about"
-					className="block px-4 py-2 text-gray-300 hover:text-white">
+					className="block px-4 py-2 font-semibold text-gray-300 hover:text-white">
 					About Us
 				</Link>
 				<Link
 					to="/community"
-					className="block px-4 py-2 text-gray-300 hover:text-white">
+					className="block px-4 py-2 font-semibold text-gray-300 hover:text-white">
 					Community
 				</Link>
 				{!token || isexpired ? ( // If no token or token is expired, show Sign Up and Login buttons
 					<>
 						<Link
 							to="/signup"
-							className="block px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-500 hover:text-white">
+							className="block  m-2 p-2 bg-white text-blue-600 rounded hover:bg-blue-500 hover:text-white">
 							Sign Up
 						</Link>
 						<Link
 							to="/login"
-							className="block px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-500 hover:text-white">
+							className="block m-2 p-2 bg-white text-blue-600 rounded hover:bg-blue-500 hover:text-white">
 							Login
 						</Link>
 					</>
@@ -115,7 +115,7 @@ function Header() {
 					<Link
 						to="/"
 						onClick={handleLogout}
-						className="block px-4 py-2 bg-red-700 text-white rounded hover:bg-red-800">
+						className="block p-2 m-2 bg-red-700 text-white rounded hover:bg-red-800">
 						Logout
 					</Link>
 				)}
@@ -125,27 +125,27 @@ function Header() {
 			<nav className="hidden md:flex space-x-8">
 				<Link
 					to="/Admin"
-					className="text-xl text-gray-300 hover:text-white">
+					className="text-xl font-semibold text-gray-300 hover:text-white">
 					Contribute
 				</Link>
 				<Link
 					to="/Userpanel"
-					className="text-xl text-gray-300 hover:text-white">
+					className="text-xl text-gray-300 font-semibold hover:text-white">
 					Courses
 				</Link>
 				<Link
 					to="/interviewprep/Startprep"
-					className="text-xl text-gray-300 hover:text-white">
+					className="text-xl text-gray-300 font-semibold hover:text-white">
 					Interview
 				</Link>
 				<Link
 					to="/about"
-					className="text-xl text-gray-300 hover:text-white">
+					className="text-xl text-gray-300 font-semibold hover:text-white">
 					About Us
 				</Link>
 				<Link
 					to="/community"
-					className="text-xl text-gray-300 hover:text-white">
+					className="text-xl text-gray-300 font-semibold hover:text-white">
 					Community
 				</Link>
 
