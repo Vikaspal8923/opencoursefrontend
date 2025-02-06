@@ -30,92 +30,82 @@ const Login = () => {
 		 setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-
-
 	const handleSubmit = async (e) => {
-
 		e.preventDefault();
-		
-		
+	
+		// Show the loading toast and store the toast ID
+		const loadingToastId = toast.loading("Logging in...", {
+			position: "top-right",
+			autoClose: false,
+			hideProgressBar: true,
+			closeOnClick: false,
+			pauseOnHover: true,
+			draggable: true,
+			theme: "light",
+		});
+	
 		try {
-			// Show the loading toast when login starts
-			 toast.loading("Logging in...", {
-				position: "top-right",
-				autoClose: false, 
-				hideProgressBar: true,
-				closeOnClick: false,
-				pauseOnHover: true,
-				draggable: true,
-				theme: "light",
-			});
-		
-
 			// Send the login request
-			
-
 			const response = await axios.post(
 				"https://opencoursem.netlify.app/auth/login",
-				formData	
-			 );
-
-			
-
+				formData
+			);
+	
 			if (response) {
-
+				console.log("login response", response.data);
+	
 				// Dispatch data to store
-				console.log("login response",response.data);
 				dispatch(setSignupData(response.data.data.user));
 				dispatch(setToken(response.data.data.token));
-				
-		
+	
 				// Store signup data and token in local storage
 				localStorage.setItem("signupData", JSON.stringify(response.data.data.user));
 				localStorage.setItem("token", JSON.stringify(response.data.data.token));
-			
-		
+	
 				// Navigate to the home page
 				navigate("/");
-		
-				// Dismiss the loading toast and show success
-				toast.success({
-					render: "Login Successful!",
-					type: "success",
+	
+				// Dismiss the loading toast
+				toast.dismiss(loadingToastId);
+	
+				// Show success message
+				toast.success("Login Successful!", {
+					position: "top-right",
 					autoClose: 5000,
 					closeOnClick: true,
 					pauseOnHover: true,
 					draggable: true,
 				});
-			} 
-			else {
+			} else {
+				
+				toast.dismiss(loadingToastId);
+	
 				// Handle the failed login case
-				toast.error( {
-					render: "Login failed",
-					type: "error",
+				toast.error("Login failed", {
+					position: "top-right",
 					autoClose: 5000,
 					closeOnClick: true,
 					pauseOnHover: true,
 					draggable: true,
 				});
 			}
-		} 
-		
-		catch (err) {
-			// Log error and show failure toast
+		} catch (err) {
 			console.log("Error is ", err);
-			toast.error({
-				render: "Error logging in",
-				type: "error",
+	
+			// Dismiss the loading toast
+			toast.dismiss(loadingToastId);
+	
+			// Show error toast
+			toast.error("Error logging in", {
+				position: "top-right",
 				autoClose: 5000,
 				closeOnClick: true,
 				pauseOnHover: true,
 				draggable: true,
 			});
 		}
-
-		
-	}		
-
-
+	};
+	
 
 
 
@@ -175,7 +165,6 @@ const Login = () => {
 			</form>
 		</div>
 	);
-	
 };
 
 export default Login;

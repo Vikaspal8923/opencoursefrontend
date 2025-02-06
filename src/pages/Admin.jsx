@@ -5,10 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Admin() {
-	console.log("token is hai");
 	console.log("token local ka ", localStorage.getItem("token"));
 	const { token: token } = useSelector((state) => state.auth);
-	console.log(" token in frontend", token);
 
 	const [fields, setFields] = useState([]);
 
@@ -249,7 +247,6 @@ function Admin() {
 					`https://opencoursebackend.onrender.com/user/fields/${selectedField._id}/subtopics`,
 					{ subtopicName: newTopic.trim() },
 					{
-				
 						headers: {
 							Authorization: `Bearer ${token}`, // Authorization token in headers
 						},
@@ -281,7 +278,6 @@ function Admin() {
 				}));
 
 				setNewTopic("");
-
 			} catch (error) {
 				console.error("Error adding topic", error);
 				toast.error("Error adding topic", {
@@ -439,280 +435,310 @@ function Admin() {
 
 	return (
 		<div className="min-h-screen bg-bg-dark p-6">
-			{/* My Videos Section */}
-			<div className=" max-w-7xl mx-auto bg-bg-dark shadow-lg rounded-lg p-6">
-				<div className="mb-8">
-					<h2 className="text-2xl font-semibold text-gray-200 mb-4">
-						My Videos
+			{!token ? (
+				<div className="flex justify-center items-center h-full">
+					<h2 className="text-xl text-white mb-4 text-center">
+						To contribute, please login or
+						sign up first
 					</h2>
-					<div className=" border-4 border-purple-300 rounded-xl p-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-						{myVideos.map(
-							(video, index) => (
-								<div
-									key={
-										index
-									}
-									className="p-4 bg-bg-dark border-2 border-purple-300 text-white rounded-lg shadow-lg">
-									<h3 className="text-xl font-bold text-center">
-										{
-											video.title
-										}
-									</h3>
-									<p className="text-center text-sm">
-										{
-											video.field
-										}
-									</p>
-
-									{/* Embed YouTube video */}
-									<div
-										className=" relative h-0 overflow-hidden"
-										style={{
-											paddingBottom:
-												"56.25%",
-										}}>
-										<iframe
-											className="absolute top-0 left-0 w-full h-full"
-											src={`https://www.youtube.com/embed/${getYoutubeVideoId(
-												video.url
-											)}`}
-											frameBorder="0"
-											allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-											allowFullScreen
-											title={
-												video.title
-											}
-										/>
-									</div>
-								</div>
-							)
-						)}
-					</div>
 				</div>
-
-				{/* Add New Field Section */}
-				<div className="mb-8">
-					<div className="flex justify-between items-center">
-						<h2 className="text-2xl font-semibold text-gray-100">
-							Manage Learning Fields
+			) : (
+				<div className=" max-w-7xl mx-auto bg-bg-dark shadow-lg rounded-lg p-6">
+					<div className="mb-8">
+						<h2 className="text-2xl font-semibold text-gray-200 mb-4">
+							My Videos
 						</h2>
-						<div className="flex items-center">
-							<select
-								value={newField}
-								onChange={(e) =>
-									setNewField(
-										e
-											.target
-											.value
-									)
-								}
-								className="border border-gray-300 rounded-lg p-2 mr-2">
-								<option
-									value=""
-									disabled>
-									Select a
-									field
-								</option>
-								{predefinedFields.map(
-									(
-										field
-									) => (
-										<option
-											key={
-												field
-											}
-											value={
-												field
-											}>
-											{
-												field
-											}
-										</option>
-									)
-								)}
-							</select>
-							<button
-								className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors"
-								onClick={
-									handleAddField
-								}>
-								Add New Field
-							</button>
-						</div>
-					</div>
-
-					{/* Fields Grid */}
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-						{fields.map((field) => (
-							<div
-								key={field._id}
-								className="p-4 bg-blue-100 text-blue-900 rounded-lg shadow-lg cursor-pointer hover:bg-blue-300 hover:scale-105 transform transition duration-300"
-								onClick={() =>
-									handleFieldClick(
-										field
-									)
-								} // Pass full field object
-							>
-								<h3 className="text-xl font-bold text-center">
-									{
-										field.name
-									}
-								</h3>
-							</div>
-						))}
-					</div>
-				</div>
-
-				{/* Display selected field topics */}
-				{selectedField && (
-					<div>
-						<div className="flex justify-between items-center mb-4">
-							<h2 className="text-2xl font-semibold text-gray-100">
-								{
-									selectedField.name
-								}{" "}
-								Topics
-							</h2>
-							<button
-								className="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition-colors"
-								onClick={
-									handleAddTopic
-								}>
-								Add Topic
-							</button>
-						</div>
-
-						{/* New Topic Input Form */}
-						<div className="mb-4">
-							<input
-								type="text"
-								value={newTopic}
-								onChange={(e) =>
-									setNewTopic(
-										e
-											.target
-											.value
-									)
-								}
-								placeholder="Enter new topic"
-								className="border border-gray-300 rounded-lg p-2 mr-2"
-							/>
-							<button
-								className="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition-colors"
-								onClick={
-									handleAddTopic
-								}>
-								Add Topic
-							</button>
-						</div>
-
-						{/* Topics Grid with Video Upload */}
-						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-							{topics[
-								selectedField
-									.name
-							]?.map(
+						<div className=" border-4 border-purple-300 rounded-xl p-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
+							{myVideos.map(
 								(
-									topic,
+									video,
 									index
 								) => (
 									<div
 										key={
 											index
 										}
-										className="p-4 bg-green-100 text-green-900 rounded-lg shadow-lg cursor-pointer hover:bg-green-300 hover:scale-105 transform transition duration-300"
-										onClick={() =>
-											handleUploadVideo(
-												topic
-											)
-										}>
+										className="p-4 bg-bg-dark border-2 border-purple-300 text-white rounded-lg shadow-lg">
 										<h3 className="text-xl font-bold text-center">
 											{
-												topic.name
+												video.title
 											}
 										</h3>
+										<p className="text-center text-sm">
+											{
+												video.field
+											}
+										</p>
+
+										{/* Embed YouTube video */}
+										<div
+											className=" relative h-0 overflow-hidden"
+											style={{
+												paddingBottom:
+													"56.25%",
+											}}>
+											<iframe
+												className="absolute top-0 left-0 w-full h-full"
+												src={`https://www.youtube.com/embed/${getYoutubeVideoId(
+													video.url
+												)}`}
+												frameBorder="0"
+												allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+												allowFullScreen
+												title={
+													video.title
+												}
+											/>
+										</div>
 									</div>
 								)
 							)}
 						</div>
 					</div>
-				)}
 
-				{/* Video Upload Form */}
-				{selectedTopic && (
-					<form
-						onSubmit={handleSubmitVideo}
-						className="mt-6 bg-gray-900 shadow-lg rounded-xl p-6">
-						<h3 className="text-xl text-gray-100 font-bold mb-4">
-							Upload Video to{" "}
-							{selectedTopic.name}
-						</h3>
-
-						<div className="mb-2">
-							<label className="block text-gray-300 mb-1">
-								Video Title
-							</label>
-							<input
-								type="text"
-								name="title"
-								value={
-									videoDetails.title
-								}
-								onChange={
-									handleInputChange
-								}
-								className="border-2 border-green-300 text-white rounded-lg p-2 w-full bg-gray-600"
-								required
-							/>
+					<div className="mb-8">
+						<div className="flex justify-between items-center">
+							<h2 className="text-2xl font-semibold text-gray-100">
+								Manage Learning
+								Fields
+							</h2>
+							<div className="flex items-center">
+								<select
+									value={
+										newField
+									}
+									onChange={(
+										e
+									) =>
+										setNewField(
+											e
+												.target
+												.value
+										)
+									}
+									className="border border-gray-300 rounded-lg p-2 mr-2">
+									<option
+										value=""
+										disabled>
+										Select
+										a
+										field
+									</option>
+									{predefinedFields.map(
+										(
+											field
+										) => (
+											<option
+												key={
+													field
+												}
+												value={
+													field
+												}>
+												{
+													field
+												}
+											</option>
+										)
+									)}
+								</select>
+								<button
+									className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors"
+									onClick={
+										handleAddField
+									}>
+									Add New
+									Field
+								</button>
+							</div>
 						</div>
 
-						<div className="mb-4">
-							<label className="block text-gray-300 mb-1">
-								YouTube URL
-							</label>
-
-							<input
-								type="url"
-								name="url"
-								value={
-									videoDetails.url
-								}
-								onChange={
-									handleInputChange
-								}
-								className="border-2 border-green-300 text-white rounded-lg p-2 w-full bg-gray-600"
-								required
-							/>
+						{/* Fields Grid */}
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+							{fields.map((field) => (
+								<div
+									key={
+										field._id
+									}
+									className="p-4 bg-blue-100 text-blue-900 rounded-lg shadow-lg cursor-pointer hover:bg-blue-300 hover:scale-105 transform transition duration-300"
+									onClick={() =>
+										handleFieldClick(
+											field
+										)
+									} // Pass full field object
+								>
+									<h3 className="text-xl font-bold text-center">
+										{
+											field.name
+										}
+									</h3>
+								</div>
+							))}
 						</div>
+					</div>
 
-						<div className="mb-3">
-							<label className="block text-gray-300 mb-2">
-								Video
-								Description
-							</label>
+					{selectedField && (
+						<div>
+							<div className="flex justify-between items-center mb-4">
+								<h2 className="text-2xl font-semibold text-gray-100">
+									{
+										selectedField.name
+									}{" "}
+									Topics
+								</h2>
+								<button
+									className="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition-colors"
+									onClick={
+										handleAddTopic
+									}>
+									Add
+									Topic
+								</button>
+							</div>
 
-							<textarea
-								name="description"
-								value={
-									videoDetails.description
-								}
-								onChange={
-									handleInputChange
-								}
-								className="border-2 text-white border-green-300 rounded-lg p-2 w-full bg-gray-600"
-								rows="4"
-								required
-							/>
+							{/* New Topic Input Form */}
+							<div className="mb-4">
+								<input
+									type="text"
+									value={
+										newTopic
+									}
+									onChange={(
+										e
+									) =>
+										setNewTopic(
+											e
+												.target
+												.value
+										)
+									}
+									placeholder="Enter new topic"
+									className="border border-gray-300 rounded-lg p-2 mr-2"
+								/>
+								<button
+									className="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition-colors"
+									onClick={
+										handleAddTopic
+									}>
+									Add
+									Topic
+								</button>
+							</div>
+
+							{/* Topics Grid with Video Upload */}
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+								{topics[
+									selectedField
+										.name
+								]?.map(
+									(
+										topic,
+										index
+									) => (
+										<div
+											key={
+												index
+											}
+											className="p-4 bg-green-100 text-green-900 rounded-lg shadow-lg cursor-pointer hover:bg-green-300 hover:scale-105 transform transition duration-300"
+											onClick={() =>
+												handleUploadVideo(
+													topic
+												)
+											}>
+											<h3 className="text-xl font-bold text-center">
+												{
+													topic.name
+												}
+											</h3>
+										</div>
+									)
+								)}
+							</div>
 						</div>
+					)}
 
-						<button
-							type="submit"
-							className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">
-							Upload Video
-						</button>
-					</form>
-				)}
-			</div>
+					{/* Video Upload Form */}
+					{selectedTopic && (
+						<form
+							onSubmit={
+								handleSubmitVideo
+							}
+							className="mt-6 bg-gray-900 shadow-lg rounded-xl p-6">
+							<h3 className="text-xl text-gray-100 font-bold mb-4">
+								Upload Video to{" "}
+								{
+									selectedTopic.name
+								}
+							</h3>
+
+							<div className="mb-2">
+								<label className="block text-gray-300 mb-1">
+									Video
+									Title
+								</label>
+								<input
+									type="text"
+									name="title"
+									value={
+										videoDetails.title
+									}
+									onChange={
+										handleInputChange
+									}
+									className="border-2 border-green-300 text-white rounded-lg p-2 w-full bg-gray-600"
+									required
+								/>
+							</div>
+
+							<div className="mb-4">
+								<label className="block text-gray-300 mb-1">
+									YouTube
+									URL
+								</label>
+
+								<input
+									type="url"
+									name="url"
+									value={
+										videoDetails.url
+									}
+									onChange={
+										handleInputChange
+									}
+									className="border-2 border-green-300 text-white rounded-lg p-2 w-full bg-gray-600"
+									required
+								/>
+							</div>
+
+							<div className="mb-3">
+								<label className="block text-gray-300 mb-2">
+									Video
+									Description
+								</label>
+
+								<textarea
+									name="description"
+									value={
+										videoDetails.description
+									}
+									onChange={
+										handleInputChange
+									}
+									className="border-2 text-white border-green-300 rounded-lg p-2 w-full bg-gray-600"
+									rows="4"
+									required
+								/>
+							</div>
+
+							<button
+								type="submit"
+								className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">
+								Upload Video
+							</button>
+						</form>
+					)}
+				</div>
+			)}
 		</div>
 	);
 }
