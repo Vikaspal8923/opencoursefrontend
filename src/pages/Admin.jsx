@@ -434,14 +434,14 @@ function Admin() {
 	};
 
 	return (
-		<div className="min-h-screen bg-bg-dark p-6">
+		<div className="min-h-screen bg-bg-dark p-4">
 			{!token ? (
-				<div className="flex justify-center items-center h-full">
-					<h2 className="text-xl text-white mb-4 text-center">
-						To contribute, please login or
-						sign up first
-					</h2>
-				</div>
+				<div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <h2 className="text-xl text-white text-center p-4  rounded-lg">
+          To contribute, please login or
+          sign up first
+        </h2>
+      </div>
 			) : (
 				<div className=" max-w-7xl mx-auto bg-bg-dark shadow-lg rounded-lg p-6">
 					<div className="mb-8">

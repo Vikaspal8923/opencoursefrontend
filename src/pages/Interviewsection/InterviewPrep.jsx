@@ -38,6 +38,7 @@ const InterviewPrep = () => {
 	return (
 		<div className=" bg-bg-dark">
 			<div className=" flex flex-col justify-center items-center gap-10">
+        
 
 				<div className=" flex flex-wrap justify-center pt-10 gap-5 ">
 
