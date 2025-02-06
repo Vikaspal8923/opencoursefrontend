@@ -13,7 +13,7 @@ function Header() {
 	const { token } = useSelector((state) => state.auth);
 	const [menuOpen, setMenuOpen] = useState(false);
 
-  
+
 	const verifyAccessToken = (token) => {
 		try {
 			const decoded = jwtDecode(token);
@@ -49,11 +49,13 @@ function Header() {
 
 
 	return (
-		<header className="sticky top-0 w-full bg-bg-dark bg-opacity-[.96] text-white py-4 flex items-center justify-between px-6 md:px-28 z-50">
-			<Link
-				to="/"
-				className="text-3xl font-bold text-white">
-				Open Course
+		<header className="sticky top-0 w-full bg-bg-dark bg-opacity-[.96] text-white py-4 flex items-center justify-between px-5  md:px-10 z-50">
+		  
+    	<Link to="/">
+      <div className= "">
+      <img className="mr-20" width={150} height={15} src="/open-course-logo-3.png" alt="Open Course" />
+      </div>
+				
 			</Link>
 
 			{/* Mobile Menu Button */}
