@@ -26,9 +26,9 @@ const StartPrep = () => {
 	});
 
 	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setFormData({ ...formData, [name]: value.toLowerCase() });
-	};
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value.toLowerCase() });
+    };
 
 	const fetchQuestions = async () => {
 		try {
@@ -36,7 +36,7 @@ const StartPrep = () => {
 				"https://opencoursebackend.onrender.com/Interview/getQuestions"
 			);
 			setQuestions(response.data);
-			setFilteredQuestions(response.data); 
+			setFilteredQuestions(response.data);
 			setCompanyNames([
 				...new Set(
 					response.data.map((item) =>
@@ -93,6 +93,7 @@ const StartPrep = () => {
 
 	useEffect(() => {
 		fetchQuestions();
+        handleShowQuestions();
 	}, []);
 
 	const createOptions = (array) => {
@@ -257,6 +258,7 @@ const StartPrep = () => {
 						</div>
 					</div>
 				</div>
+
 
 				{/* Questions Display */}
 				<div className="col-span-3 md:col-span-3 lg:col-span-6 w-full rounded-md h-[calc(100vh-90px)] overflow-y-auto p-4">
