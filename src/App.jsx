@@ -525,7 +525,7 @@ function App() {
 						</span>
 
 						<Link
-							to="/interviewprep"
+							to="/Startprep"
 							className="text-lg flex items-center hover:no-underline space-x-2 bg-[#50c685] px-4 py-2 rounded-lg group-hover:text-white font-semibold text-black">
 							<span>
 								Interview
