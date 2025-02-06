@@ -151,6 +151,7 @@ const StartPrep = () => {
 				<h2 className="text-white text-xl font-bold">
 					Start Preparation
 				</h2>
+
 				<button
 					onClick={() =>
 						setShowFilters(!showFilters)
@@ -160,6 +161,8 @@ const StartPrep = () => {
 						? "Hide Filters"
 						: "Show Filters"}
 				</button>
+
+
 			</div>
 
 			<div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4">
@@ -260,11 +263,13 @@ const StartPrep = () => {
 				</div>
 
 
+
 				{/* Questions Display */}
 				<div className="col-span-3 md:col-span-3 lg:col-span-6 w-full rounded-md h-[calc(100vh-90px)] overflow-y-auto p-4">
 					{filteredQuestions.length > 0 ? (
 						filteredQuestions.map(
 							(exp, index) => (
+
 								<QuestionTemplate
 									key={
 										index
@@ -277,9 +282,7 @@ const StartPrep = () => {
 						)
 					) : (
 						<p className="text-white text-center">
-							No questions found.
-							Please refine your
-							filters.
+							Loading ...
 						</p>
 					)}
 				</div>
