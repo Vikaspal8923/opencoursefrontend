@@ -58,7 +58,7 @@ const Login = () => {
 			console.log("befor fetch");
 
 			const response = await axios.post(
-				"http://localhost:5173/auth/login",
+				"https://opencoursem.netlify.app/auth/login",
 				formData	
 			 );
 
