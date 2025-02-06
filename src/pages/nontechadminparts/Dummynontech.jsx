@@ -89,7 +89,6 @@ const Dummynontech = () => {
         'https://opencoursebackend.onrender.com/nontech/addnontechVideo',
         payload, 
         {
-          withCredentials: true, 
           headers: {
             Authorization: `Bearer ${token}`, 
           },

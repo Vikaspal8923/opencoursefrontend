@@ -81,9 +81,7 @@ const Addsubtopicnontech = () => {
         const response = await axios.post('https://opencoursebackend.onrender.com/nontech/addNonTechSubtopic',
            payload, 
             {
-            withCredentials: true,
-
-            headers: {
+           headers: {
               Authorization: `Bearer ${token}`, 
             },
           });
