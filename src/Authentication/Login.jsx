@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { setToken, setSignupData } from "../reducer/slice/authSlice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { Loader } from 'rsuite';
 
 
@@ -19,13 +18,23 @@ const Login = () => {
 		password: "",
 	});
 
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	console.log("Dispatch function:", dispatch);
+    console.log("Navigate function:", navigate);
+
+
 
 	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		 setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
+
+
+
+	console.log("Form submitted", formData);
+
 
 	const handleSubmit = async (e) => {
 
@@ -44,15 +53,17 @@ const Login = () => {
 				theme: "light",
 			});
 		
+
 			// Send the login request
 			console.log("befor fetch");
 
 			const response = await axios.post(
 				"https://opencoursebackend.onrender.com/auth/login",
-				formData,
-				
-			);
+				formData	
+			 );
+
 			console.log("after fetch");
+
 			if (response) {
 
 				// Dispatch data to store
@@ -104,7 +115,15 @@ const Login = () => {
 				draggable: true,
 			});
 		}
+
+		console.log("Before fetch request...");
 	}		
+
+
+
+
+
+
 
 	return (
 		<div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-200 to-indigo-200">
