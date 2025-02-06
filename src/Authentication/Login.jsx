@@ -22,8 +22,7 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	console.log("Dispatch function:", dispatch);
-    console.log("Navigate function:", navigate);
+
 
 
 
@@ -31,9 +30,6 @@ const Login = () => {
 		 setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-
-
-	console.log("Form submitted", formData);
 
 
 	const handleSubmit = async (e) => {
@@ -55,14 +51,14 @@ const Login = () => {
 		
 
 			// Send the login request
-			console.log("befor fetch");
+			
 
 			const response = await axios.post(
 				"https://opencoursem.netlify.app/auth/login",
 				formData	
 			 );
 
-			console.log("after fetch");
+			
 
 			if (response) {
 
@@ -116,7 +112,7 @@ const Login = () => {
 			});
 		}
 
-		console.log("Before fetch request...");
+		
 	}		
 
 
@@ -179,6 +175,7 @@ const Login = () => {
 			</form>
 		</div>
 	);
+	
 };
 
 export default Login;
