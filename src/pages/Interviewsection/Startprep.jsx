@@ -90,7 +90,7 @@ const StartPrep = () => {
         } catch (err) {
             console.error("Error fetching questions:", err);
         } finally {
-            setLoading(false); // Set loading to false after fetching data
+            setLoading(false); 
         }
     };
 
@@ -148,17 +148,14 @@ const StartPrep = () => {
     };
 
     return (
-        <div className="bg-black min-h-screen p-5">
+        <div className="bg-black min-h-screen p-2">
             {/* Toggle Button for Mobile */}
-            <div className="md:hidden flex justify-between items-center mb-4">
-                <h2 className="text-white text-xl font-bold">
-                    Start Preparation
-                </h2>
+            <div className="md:hidden flex justify-start items-center mb-4">
                 <button
                     onClick={() =>
                         setShowFilters(!showFilters)
                     }
-                    className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded">
+                    className="bg-orange-500  hover:bg-orange-600 text-white px-3 py-2 rounded md:hidden">
                     {showFilters
                         ? "Hide Filters"
                         : "Show Filters"}
@@ -264,11 +261,11 @@ const StartPrep = () => {
 
                 {/* Questions Display */}
                 <div className="col-span-3 md:col-span-3 lg:col-span-6 w-full rounded-md h-[calc(100vh-90px)] overflow-y-auto p-4">
-                    {loading ? ( // Show loading message if data is being fetched
-                        <p className="text-white text-center">
+                    {loading ? ( 
+                        <p className="text-white text-center text-2xl">
                             Loading...
                         </p>
-                    ) : filteredQuestions.length > 0 ? ( // Show questions if data is ready
+                    ) : filteredQuestions.length > 0 ? ( 
                         filteredQuestions.map(
                             (exp, index) => (
                                 <QuestionTemplate

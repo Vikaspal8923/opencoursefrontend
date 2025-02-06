@@ -7,11 +7,12 @@ const QuestionTemplate = ({ exp }) => {
 	const [showAnswer, setShowAnswer] = useState(true);
 
 	return (
-		<div className="w-full md:w-[90%] bg-black p-4 mb-4 rounded-lg shadow-lg flex flex-col md:flex-row">
+		<div className="w-full md:w-[95%] bg-black p-4 mb-4 rounded-lg shadow-lg flex flex-col md:flex-row">
 			<div className="w-full ml-0 md:ml-5 p-2 md:pl-5 flex flex-col mt-3 md:mt-5">
 
 				{/* QUESTION */}
-				<p className="text-white text-lg md:text-xl font-bold flex flex-col md:flex-row text-start">
+				<p className="text-white text-lg md:text-xl font-bold flex flex-col md:flex-row text-start justify-start">
+
 					<strong className="text-lg md:text-xl text-blue-600">
 						Question:
 					</strong>
@@ -20,6 +21,7 @@ const QuestionTemplate = ({ exp }) => {
 						{exp.questions}
 					</span>
 				</p>
+
 				<hr className="border-gray-600 my-2" />
 
 				{/* ANSWER */}
