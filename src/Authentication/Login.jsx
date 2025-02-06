@@ -31,42 +31,84 @@ const Login = () => {
 		 setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-	  
+	
+		// Show the loading toast and store the toast ID
+		const loadingToastId = toast.loading("Logging in...", {
+			position: "top-right",
+			autoClose: false,
+			hideProgressBar: true,
+			closeOnClick: false,
+			pauseOnHover: true,
+			draggable: true,
+			theme: "light",
+		});
+	
 		try {
-		  toast.loading("Logging in...", { position: "top-right", autoClose: false });
-	  
-		  const response = await axios.post("https://opencoursem.netlify.app/auth/login", formData);
-	  
-		  console.log("Full Response:", response); // Log the full response
-	  
-		  if (response.status === 200) {
-			const { user, token } = response.data.data;
-	  
-			console.log("User:", user);
-			console.log("Token:", token);
-	  
-			dispatch(setSignupData(user));
-			dispatch(setToken(token));
-	  
-			localStorage.setItem("signupData", JSON.stringify(user));
-			localStorage.setItem("token", token); // Store token without quotes
-	  
-			navigate("/");
-			toast.dismiss();
-			toast.success("Login Successful!");
-		  } else {
-			toast.dismiss();
-			toast.error("Login failed. Please try again.");
-		  }
+			// Send the login request
+			const response = await axios.post(
+				"https://opencoursem.netlify.app/auth/login",
+				formData
+			);
+	
+			if (response) {
+				console.log("login response", response.data);
+	
+				// Dispatch data to store
+				dispatch(setSignupData(response.data.data.user));
+				dispatch(setToken(response.data.data.token));
+	
+				// Store signup data and token in local storage
+				localStorage.setItem("signupData", JSON.stringify(response.data.data.user));
+				localStorage.setItem("token", JSON.stringify(response.data.data.token));
+	
+				// Navigate to the home page
+				navigate("/");
+	
+				// Dismiss the loading toast
+				toast.dismiss(loadingToastId);
+	
+				// Show success message
+				toast.success("Login Successful!", {
+					position: "top-right",
+					autoClose: 5000,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+				});
+			} else {
+				// Dismiss the loading toast
+				toast.dismiss(loadingToastId);
+	
+				// Handle the failed login case
+				toast.error("Login failed", {
+					position: "top-right",
+					autoClose: 5000,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+				});
+			}
 		} catch (err) {
-		  console.error("Login Error:", err.response ? err.response.data : err.message);
-		  toast.dismiss();
-		  toast.error("Error logging in. Please check credentials.");
+			console.log("Error is ", err);
+	
+			// Dismiss the loading toast
+			toast.dismiss(loadingToastId);
+	
+			// Show error toast
+			toast.error("Error logging in", {
+				position: "top-right",
+				autoClose: 5000,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+			});
 		}
-	  };
-	  
+	};
+	
+
 
 
 
