@@ -31,93 +31,42 @@ const Login = () => {
 		 setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-
-
 	const handleSubmit = async (e) => {
-
 		e.preventDefault();
-		
-		
+	  
 		try {
-			// Show the loading toast when login starts
-			 toast.loading("Logging in...", {
-				position: "top-right",
-				autoClose: false, 
-				hideProgressBar: true,
-				closeOnClick: false,
-				pauseOnHover: true,
-				draggable: true,
-				theme: "light",
-			});
-		
-
-			// Send the login request
-			console.log("befor fetch");
-
-			const response = await axios.post(
-				"https://opencoursem.netlify.app/auth/login",
-				formData	
-			 );
-
-			console.log("after fetch");
-
-			if (response) {
-
-				// Dispatch data to store
-				console.log("login response",response.data);
-				dispatch(setSignupData(response.data.data.user));
-				dispatch(setToken(response.data.data.token));
-				
-		
-				// Store signup data and token in local storage
-				localStorage.setItem("signupData", JSON.stringify(response.data.data.user));
-				localStorage.setItem("token", JSON.stringify(response.data.data.token));
-			
-		
-				// Navigate to the home page
-				navigate("/");
-		
-				// Dismiss the loading toast and show success
-				toast.success({
-					render: "Login Successful!",
-					type: "success",
-					autoClose: 5000,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-				});
-			} 
-			else {
-				// Handle the failed login case
-				toast.error( {
-					render: "Login failed",
-					type: "error",
-					autoClose: 5000,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-				});
-			}
-		} 
-		
-		catch (err) {
-			// Log error and show failure toast
-			console.log("Error is ", err);
-			toast.error({
-				render: "Error logging in",
-				type: "error",
-				autoClose: 5000,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-			});
+		  toast.loading("Logging in...", { position: "top-right", autoClose: false });
+	  
+		  const response = await axios.post("https://opencoursem.netlify.app/auth/login", formData);
+	  
+		  console.log("Full Response:", response); // Log the full response
+	  
+		  if (response.status === 200) {
+			const { user, token } = response.data.data;
+	  
+			console.log("User:", user);
+			console.log("Token:", token);
+	  
+			dispatch(setSignupData(user));
+			dispatch(setToken(token));
+	  
+			localStorage.setItem("signupData", JSON.stringify(user));
+			localStorage.setItem("token", token); // Store token without quotes
+	  
+			navigate("/");
+			toast.dismiss();
+			toast.success("Login Successful!");
+		  } else {
+			toast.dismiss();
+			toast.error("Login failed. Please try again.");
+		  }
+		} catch (err) {
+		  console.error("Login Error:", err.response ? err.response.data : err.message);
+		  toast.dismiss();
+		  toast.error("Error logging in. Please check credentials.");
 		}
-
-		console.log("Before fetch request...");
-	}		
-
-
-
+	  };
+	  
 
 
 

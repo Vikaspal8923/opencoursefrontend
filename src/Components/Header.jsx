@@ -13,6 +13,7 @@ function Header() {
 	const { token } = useSelector((state) => state.auth);
 	const [menuOpen, setMenuOpen] = useState(false);
 
+  
 	const verifyAccessToken = (token) => {
 		try {
 			const decoded = jwtDecode(token);
@@ -44,6 +45,8 @@ function Header() {
 			theme: "light",
 		});
 	};
+
+
 
 	return (
 		<header className="sticky top-0 w-full bg-bg-dark bg-opacity-[.96] text-white py-4 flex items-center justify-between px-6 md:px-28 z-50">
@@ -144,7 +147,7 @@ function Header() {
 					Community
 				</Link>
 
-        
+
 
 				{!token || isexpired ? ( 
 					<>
