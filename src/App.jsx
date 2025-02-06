@@ -106,19 +106,20 @@ function App() {
 	) : (
 		<>
 			<div className="min-h-screen bg-bg-dark ">
-				<div className="flex flex-col md:flex-row bg-custom-gradient justify-around items-center md:justify-between p-5">
-					<div className="text-white text-center md:text-left ml-8">
-						<h1 className="oswald-600 mb-4 text-start">
-							<span className="font-extrabold text-5xl md:text-7xl font-oswald">
+				<div className="flex flex-col md:flex-row bg-custom-gradient justify-center md:justify-between items-center p-5">
+					{/* Left Section - Text */}
+					<div className="text-white text-center md:text-left px-4 md:px-8">
+						<h1 className="oswald-600 text-4xl md:text-7xl font-extrabold mb-2 md:mb-4">
+							<span className="font-oswald">
 								Learn
 							</span>{" "}
 							and{" "}
-							<span className="font-extrabold text-5xl md:text-7xl font-oswald">
+							<span className="font-oswald">
 								Contribute
 							</span>
 						</h1>
 
-						<h1 className="oswald-700 text-6xl md:text-8xl font-extrabold mb-4 mt-2 text-start">
+						<h1 className="oswald-700 text-5xl md:text-8xl font-extrabold mt-2 mb-4">
 							<span className="text-transparent bg-gradient-to-r from-green-400 via-green-400 to-blue-500 bg-clip-text">
 								Together
 							</span>
@@ -126,30 +127,31 @@ function App() {
 
 						<p className="text-lg md:text-xl font-semibold font-sans">
 							<TextGenerateEffect words="Decentralized and borderless platform worldwide users can collectively learn, teach" />
-							<span className="text-transparent text-start bg-gradient-to-r from-green-400 via-green-400 to-blue-500 bg-clip-text">
+							<span className="text-transparent bg-gradient-to-r from-green-400 via-green-400 to-blue-500 bg-clip-text">
 								Grow Together!
 							</span>
 						</p>
 
-						<div className="flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start mt-5 space-y-3 md:space-y-0">
+						{/* Buttons */}
+						<div className="flex flex-col md:flex-row items-center md:items-start mt-6 space-y-3 md:space-y-0 md:space-x-4">
 							<Link
 								to="/userpanel"
-								className="bg-c_tech_color text-lg hover:bg-pink-500 text-center text-black font-extrabold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:no-underline hover:text-black focus:outline-none active:bg-pink-500">
+								className="w-full md:w-auto bg-c_tech_color text-lg hover:bg-pink-500 text-center text-black font-extrabold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:no-underline hover:text-black focus:outline-none active:bg-pink-500">
 								Tech Courses
 							</Link>
 
 							<Link
 								to="/seenontechcourse"
-								className="bg-blue-500 text-lg hover:bg-blue-400 text-black hover:text-black font-extrabold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:no-underline focus:outline-none active:bg-blue-400">
+								className="w-full md:w-auto bg-blue-500 text-lg hover:bg-blue-400 text-black font-extrabold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:no-underline focus:outline-none active:bg-blue-400">
 								Non-tech Courses
 							</Link>
 						</div>
 					</div>
 
-
+					{/* Right Section - Image */}
 					<div className="flex justify-center items-center mt-10 md:mt-0">
 						<img
-							className="w-2/3 md:w-auto mb-14"
+							className="w-full max-w-sm md:max-w-md mb-14"
 							src="/hero_section_img.png"
 							alt="Hero Section"
 						/>
@@ -157,8 +159,8 @@ function App() {
 				</div>
 
 				{/* Contribution section */}
-				<div className="flex flex-col items-center justify-center h-auto md:h-[400px] lg:h-[600px] bg-black text-white px-4 py-8">
-					<div className="w-full px-6 py-12 text-center">
+				<div className="flex flex-col items-center justify-center h-auto bg-black text-white px-4 py-8">
+					<div className="w-full px-6 py-6 text-center">
 						<h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-4">
 							Together, we can make a
 							<br />
@@ -170,169 +172,98 @@ function App() {
 							to be great, to shine,
 							and to stand out.
 						</p>
-						<div className="relative mt-6">
+					</div>
+
+					{/* Image */}
+					<div className="relative w-full flex justify-center">
+						<img
+							src="/laptop-3.jpg"
+							alt="Laptop"
+							className="w-full max-w-lg mx-auto object-cover rounded-lg"
+						/>
+					</div>
+
+					{/* Buttons - Now properly visible on desktop */}
+					<div className="w-full flex flex-col sm:flex-row sm:justify-center sm:space-x-4 items-center mt-2 space-y-3 sm:space-y-0">
+						<Link
+							to="/admin"
+							className="text-gray-950 text-lg no-underline rounded-md bg-white p-3 font-semibold hover:bg-gray-200 hover:text-gray-950 transition duration-300 w-full max-w-xs text-center">
+							Contribute in Tech
+						</Link>
+						<Link
+							to="/dummynontechcourse"
+							className="text-gray-950 text-lg no-underline rounded-md bg-white p-3 font-semibold hover:bg-gray-200 hover:text-gray-950 transition duration-300 w-full max-w-xs text-center">
+							Contribute in NonTech
+						</Link>
+					</div>
+				</div>
+
+				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 p-6">
+					{/* Card Template */}
+					{[
+						{
+							img: "/contribute_im1.jpeg",
+							title: "Web Development",
+							desc: "What is JavaScript?",
+							link: "/admin",
+						},
+						{
+							img: "/contribute_img2.jpeg",
+							title: "AI/ML",
+							desc: "What is Python?",
+							link: "/admin",
+						},
+						{
+							img: "/contribution_img3.jpeg",
+							title: "Android",
+							desc: "What is Kotlin?",
+							link: "/admin",
+						},
+						{
+							img: "/blockchain.webp",
+							title: "Blockchain",
+							desc: "What is Solana?",
+							link: "/admin",
+						},
+						{
+							img: "/contribute_im1.jpeg",
+							title: "Data Science",
+							desc: "What is Pandas?",
+							link: "/admin",
+						},
+					].map((card, index) => (
+						<div
+							key={index}
+							className="p-5 bg-gray-900 shadow-lg rounded-md w-[100%] max-w-sm mx-auto sm:w-auto">
 							<img
-								src="/laptop-3.jpg"
-								alt="Laptop"
-								className="w-full max-w-lg mx-auto object-cover rounded-lg"
+								className="rounded-lg hover:scale-105 duration-300 w-full"
+								src={card.img}
+								alt={card.title}
 							/>
-							<div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 px-6 py-4 rounded-full w-[90%] sm:w-auto flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+
+							<h3 className="text-lg sm:text-xl font-bold text-white mt-3">
+								{card.title}
+							</h3>
+							<p className="text-sm sm:text-md text-gray-300">
+								{card.desc}
+							</p>
+
+							<div className="flex items-center bg-pink-600 text-white p-2 mt-3 rounded-lg hover:scale-105 cursor-pointer duration-200">
 								<Link
-									to="/admin"
-									className="text-gray-950 text-lg no-underline rounded-md bg-white p-3 font-semibold hover:bg-gray-200 hover:text-gray-950 transition duration-300 w-full sm:w-auto text-center">
+									to={
+										card.link
+									}
+									className="font-semibold text-lg no-underline text-gray-100 hover:text-gray-100 w-full text-center">
 									Contribute
-									in Tech
-								</Link>
-								<Link
-									to="/dummynontechcourse"
-									className="text-gray-950 text-lg no-underline rounded-md bg-white p-3 font-semibold hover:bg-gray-200 hover:text-gray-950 transition duration-300 w-full sm:w-auto text-center">
-									Contribute
-									in
-									NonTech
 								</Link>
 							</div>
 						</div>
-					</div>
+					))}
 				</div>
 
-				<div className="flex justify-start items-start space-x-4 p-6 ml-16">
-					{/* Card 1 */}
-					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
-						<img
-							className="rounded-lg hover:scale-105 duration-300"
-							src="/contribute_im1.jpeg"
-							alt="Web Development"
-						/>
-						<h3 className="text-xl font-bold text-white p-1">
-							Web Development
-						</h3>
-						<p className="text-md text-gray-300 p-1">
-							What is JavaScript?
-						</p>
-						<div className="flex flex-row justify-start items-center text-white bg-pink-600 p-1 m-1 rounded-lg hover:scale-105 cursor-pointer duration-200">
-							<span className="font-semibold text-lg no-underline p-1">
-								<Link
-									to="/admin"
-									className="no-underline text-gray-100 hover:text-gray-100 focus:text-gray-100 visited:text-gray-100">
-									Contribute
-								</Link>
-							</span>
-							<span className="font-semibold">
-								<FaArrowRight />
-							</span>
-						</div>
-					</div>
 
-					{/* Card 2 */}
-					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
-						<img
-							className="rounded-lg hover:scale-105 duration-300"
-							src="/contribute_img2.jpeg"
-							alt="AI/ML"
-						/>
-						<h3 className="text-xl font-bold text-white p-1">
-							AI/ML
-						</h3>
-						<p className="text-md text-gray-300 p-1">
-							What is Python?
-						</p>
-						<div className="flex flex-row justify-start items-center text-white bg-pink-600 p-1 m-1 rounded-lg hover:scale-105 cursor-pointer duration-200">
-							<span className="font-semibold text-lg no-underline p-1">
-								<Link
-									to="/admin"
-									className="no-underline text-gray-100 hover:text-gray-100 focus:text-gray-100 visited:text-gray-100">
-									Contribute
-								</Link>
-							</span>
-							<span className="font-semibold">
-								<FaArrowRight />
-							</span>
-						</div>
-					</div>
 
-					{/* Card 3 */}
-					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
-						<img
-							className="rounded-lg hover:scale-105 duration-300"
-							src="/contribution_img3.jpeg"
-							alt="Android Development"
-						/>
-						<h3 className="text-xl font-bold text-white p-1">
-							Android
-						</h3>
-						<p className="text-md text-gray-300 p-1">
-							What is Kotlin?
-						</p>
-						<div className="flex flex-row justify-start items-center text-white bg-pink-600 p-1 m-1 rounded-lg hover:scale-105 cursor-pointer duration-200">
-							<span className="font-semibold text-lg no-underline p-1">
-								<Link
-									to="/admin"
-									className="no-underline text-gray-100 hover:text-gray-100 focus:text-gray-100 visited:text-gray-100">
-									Contribute
-								</Link>
-							</span>
-							<span className="font-semibold">
-								<FaArrowRight />
-							</span>
-						</div>
-					</div>
-
-					{/* Card 1 */}
-					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
-						<img
-							className="rounded-lg hover:scale-105 duration-300"
-							src="/blockchain.webp"
-							alt="Web Development"
-						/>
-						<h3 className="text-xl font-bold text-white p-1">
-							Blockchain
-						</h3>
-						<p className="text-md text-gray-300 p-1">
-							What is Solana?
-						</p>
-						<div className="flex flex-row justify-start items-center text-white bg-pink-600 p-1 m-1 rounded-lg hover:scale-105 cursor-pointer duration-200">
-							<span className="font-semibold text-lg no-underline p-1">
-								<Link
-									to="/admin"
-									className="no-underline text-gray-100 hover:text-gray-100 focus:text-gray-100 visited:text-gray-100">
-									Contribute
-								</Link>
-							</span>
-							<span className="font-semibold">
-								<FaArrowRight />
-							</span>
-						</div>
-					</div>
-
-					{/* Card 4 */}
-					<div className="p-5 m-2 rounded-md w-56 bg-gray-900 shadow-lg cursor-pointer">
-						<img
-							className="rounded-lg hover:scale-105 duration-300"
-							src="/contribute_im1.jpeg"
-							alt="Data Science"
-						/>
-						<h3 className="text-xl font-bold text-white p-1">
-							Data Science
-						</h3>
-						<p className="text-md text-gray-300 p-1">
-							What is Pandas?
-						</p>
-						<div className="flex flex-row justify-start items-center text-white bg-pink-600 p-1 m-1 rounded-lg hover:scale-105 cursor-pointer duration-200">
-							<span className="font-semibold text-lg no-underline p-1">
-								<Link
-									to="/admin"
-									className="no-underline text-gray-100 hover:text-gray-100 focus:text-gray-100 visited:text-gray-100">
-									Contribute
-								</Link>
-							</span>
-							<span className="font-semibold">
-								<FaArrowRight />
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div className="relative flex justify-center items-center w-11/12 mx-auto p-2 h-[300px] md:h-[400px] lg:h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black">
+				<div className="relative flex justify-center items-center sm:hidden w-11/12 mx-auto p-2 h-[300px] md:h-[400px] lg:h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black">
 					<div className="absolute bg-transparent top-0 left-0 flex flex-col lg:flex-row items-center justify-between w-full h-full z-30">
 						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 ml-4 md:ml-10 mt-6 ">
 							{items.map(
@@ -435,6 +366,9 @@ function App() {
 						<div className="absolute interactive"></div>
 					</div>
 				</div>
+
+
+				
 
 				<div className="flex flex-col md:flex-row mt-24 justify-center items-center p-8 gap-8">
 					{/* Interview Contribute Section */}
@@ -599,7 +533,6 @@ function App() {
 					<Footer />
 				</div>
 			</div>
-			
 		</>
 	);
 }
