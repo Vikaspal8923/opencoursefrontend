@@ -9,7 +9,8 @@ const Interview = () => {
   const [experiences, setExperiences] = useState([]);
   const { sighnupData } = useSelector((state) => state.auth);
   const [editorContent, setEditorContent] = useState("");
-  const [editor, setEditor] = useState(false);  // Editor toggle state
+  const [editor, setEditor] = useState(false); 
+  const { token: token } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
     companyName: "",
@@ -34,7 +35,13 @@ const Interview = () => {
       const dataToSend = { ...formData, answers: editorContent };
       await axios.post(
         "https://opencoursebackend.onrender.com/Interview/addQuestion",
-        dataToSend
+
+        dataToSend,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       toast.success("Question added successfully!", {
