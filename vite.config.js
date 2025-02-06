@@ -10,7 +10,7 @@ export default defineConfig({
       secure: false
     }
   },
-  base: "./",
+  base: "/",
 
   plugins: [react()],
   
