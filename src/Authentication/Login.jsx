@@ -83,13 +83,14 @@ const Login = () => {
 				// Handle the failed login case
 				toast.error("Login failed", {
 					position: "top-right",
-					autoClose: 5000,
+					autoClose: 4000,
 					closeOnClick: true,
 					pauseOnHover: true,
 					draggable: true,
 				});
 			}
 		} catch (err) {
+			
 			console.log("Error is ", err);
 	
 			// Dismiss the loading toast
